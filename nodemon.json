@@ -1,0 +1,5 @@
+{
+  "ignore": [".git", "node_modules", "app", "admin", "**/public"],
+  "watch": false,
+  "restartable": "r"
+}
