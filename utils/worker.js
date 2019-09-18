@@ -1,9 +1,43 @@
 var emitter = require("events").EventEmitter;
 const eventemitter = new emitter();
 var { objectSort } = require("object-projection");
-var exp = {};
+var exp = {
+  redis: null
+};
+var redis = require("redis");
+// var sub = redis.createClient();
+// var pub = redis.createClient();
+var client = redis.createClient();
 
+// client.on("connect", function() {
+//   console.log("Redis client connected");
+// });
+// client.on("error", function(err) {
+//   console.log("Something went wrong " + err);
+// });
+// client.set("my test key", "my test value", redis.print);
+// client.get("my test key", function(error, result) {
+//   console.log("GET result ->" + result);
+// });
+
+// sub.subscribe("bahar", console.log);
+// // sub.subscribe("ali", console.log);
+// sub.on("message", console.log);
+// pub.publish("bahar", "test21");
+// pub.publish("ali", "test2");
+// client.LPUSH("babak", "teststring1");
+// client.LPUSH("babak", "teststring2");
+// client.LPUSH("babak", "teststring3");
+// client.LPUSH("babak", "teststring4");
+// client.LPUSH("babak", "teststring5");
+// // client.BRPOP()
+// client.RPOP("babak", console.log);
+// client.RPOP("babak", console.log);
+// client.RPOP("babak", console.log);
+// client.RPOP("babak", console.log);
+// client.RPOP("babak", console.log);
 // simple queue locally
+
 var queue = {};
 exp.jobreq = (event, data) =>
   new Promise(async resolve => {
@@ -21,6 +55,7 @@ exp.jobreq = (event, data) =>
     queue[event].queue.push(dataid);
     eventemitter.emit(event);
   });
+
 exp.addworker = (event, worker) => {
   eventemitter.on(event, async () => {
     let result;
