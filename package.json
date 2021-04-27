@@ -16,6 +16,6 @@
     "express": "^4.17.1",
     "mongoose": "^5.6.11",
     "object-projection": "^1.0.3",
-    "redis": "^2.8.0"
+    "redis": "^3.1.1"
   }
 }
